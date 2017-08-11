@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
  <title>Gab - Gab About It</title>
  <link rel="stylesheet" href="/css/main.css" />
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 </head>	
 <body>
 	<div class="header">
@@ -17,39 +18,39 @@
 			 		<a href="/gab"> Create a new Gab </a>
 			 	</div> -->
 			 	<div class="nav_link">
-			 		<a href="/login"> Logged in as {{name}} </a>
+			 		<a href="/login"> Logged in as {{username}} </a>
 			 	</div>
 			 	<div class="nav_link_out">
 			 		<a href="/"> Log Out </a>
 			 	</div>
 			</div>
 		</div>
-			<!-- <form action="" method="post" class="login_form">
-				<div class="login">
-					<label class="login_font">Username</label><br>
-					<input type="text" name="username" class="login_text">
-				</div>
-				<div class="login">
-				<label class="login_font">Password</label><br>
-				<input type="text" name="password" class="login_text">
-				</div>
-				<input type="submit" value="Log In" class="submit">
-				
-			</form>
- -->		</div>
 	</div>
 	<div class="main_contain_gab">
+		<div class="left_side_box">
+			<div class="inner_left">
+				<h2>Groups</h2>
+			</div>
+		</div>
 
 		<div class="gab_contain">
-			<h2>Create new Gab</h2>
-		</div>
-		<div class="gab_box">
-			<div class="new_gab">
-				<input type="text" name="newgab" placeholder="Tell me more...">
+			<h3>Create new Gab</h3>
+		
+			<div class="new_gab_box">
+				<form action="/gab" method="post">
+					<textarea name="newgab" placeholder="Tell me more..." id="new_gab_text" rows="3" cols="10" wrap="hard" maxlength="140" ></textarea>
+					<input type="submit" id="save" value="Save Gab">
+				</form>
 			</div>
-			<input type="submit" class="save" value="Save Gab">
 		</div>
-
+		<div class="right_side_box">
+			<div class="">
+				<h5>News and shit</h5>
+			</div>
+		</div>
+	</div>
+	<div class="footer_gab">
+		<h5_gab> - Languages - Languages - More Languages - Vas ist das? - Como Esta? - Legal jargon - HALP! - </h5>
 	</div>
 </body>
 </html>

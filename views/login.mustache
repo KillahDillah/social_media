@@ -10,14 +10,14 @@
 	<div class="header">
 		<div class="login_box">
 			<h1>Gabble</h1>
-			<form action="" method="post" class="login_form">
+			<form action="/login" method="post" class="login_form">
 				<div class="login">
 					<label class="login_font">Username</label><br>
 					<input type="text" name="username" class="login_text">
 				</div>
 				<div class="login">
 				<label class="login_font">Password</label><br>
-				<input type="text" name="password" class="login_text">
+				<input type="password" name="password" class="login_text">
 				</div>
 				<input type="submit" value="Log In" class="submit">
 				
@@ -25,28 +25,39 @@
 		</div>
 	</div>
 	<div class="main_contain">
+		<div class="left_side_box">
+			<div id="left_side_head">
+				<h1 id="left_head_text">Bro, do you even Gabble?</h1>
+			</div>
+			<div class="inner_left">
+				<h2>Who cares what you think?</h2>
+				<h5 id="nofriends">We don't, but maybe your friends might!</h5>
+				<br>
+				<br>
+				<h3>Gab about uselessness and Becky's butt</h3>
+				<br>
+				<br>
+				<h3>Waste away your time checking on what everyone else is doing!</h3>
+			</div>
+		</div>
 		<div class="signup">
 			<h1 id="signup_title"> Sign Up</h1>
 			<h3>Sign up now!</h3> 
 			<h3>It's the cool thing.</h3>
 			<div class="signup_form">
-				<form action="" method="post">
-					<div class="signup_name_box">
-						<div class="username_signup_name">
-							<input type="text" name="firstname" placeholder="First Name">
-						</div>
-						<div class="username_signup_name">
-							<input type="text" name="lastname" placeholder="Last Name">
-						</div>
+				<form action="/signup" method="post">
+					<div class="username_signup_name">
+						<input type="text" name="firstname" placeholder="First Name">
+						<input type="text" name="lastname" placeholder="Last Name">
 					</div>
 					<div class="username_signup">
 						<input type="text" name="desired_username" placeholder="Desired Username">
 					</div>
 					<div class="username_signup">
-						<input type="text" name="password" placeholder="New Password">
+						<input type="password" name="password" placeholder="New Password">
 					</div>
 					<div class="username_signup">
-					<input type="text" name="confirm"
+					<input type="password" name="confirm"
 					placeholder="Confirm Password">
 					</div>
 					<h5 id="child"> By clicking Create Account, you agree to hand over your first born child. </h5>
@@ -60,7 +71,7 @@
 		
 	</div>
 	<div class="footer_gab">
-				<h5_gab> - Languages - Languages - Como Esta? - Legal jargon - HALP! - </h5>
-			</div>
+		<h5_gab> - Languages - Languages - More Languages - Vas ist das? - Como Esta? - Legal jargon - HALP! - </h5>
+	</div>
 </body>
 </html>

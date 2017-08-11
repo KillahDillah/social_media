@@ -17,6 +17,11 @@ h1 {
 	color: white;
 } 
 
+#left_head_text {
+	color: black;
+	font-size: 2.5em;
+}
+
 .gabh1 {
 	font-size: 3em;
 	color: white;
@@ -67,16 +72,18 @@ h1 {
 	margin: auto;
 	margin-top: 30px;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 
 .main_contain_gab {
-	width: 50%;
+	width: 55%;
 	margin: auto;
 	margin-top: 30px;
+	margin-bottom: 15px;
 	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 30px;
+	border-bottom: 1px solid;
 }
 
 .head_nav {
@@ -87,7 +94,12 @@ h1 {
 .nav_link {
 	margin-left: 10px;
 	padding-right: 10px;
-	border-right: solid 1px black
+	border-right: solid 1px green;
+}
+
+.nav_link a, .nav_link_out a {
+	text-decoration-line: none;
+	color: white;
 }
 
 .nav_link_out {
@@ -95,8 +107,18 @@ h1 {
 	margin-left: 10px;
 }
 
+.left_side_box {
+	width: 200px;
+	height: 390px;
+	border: solid 1px;
+	margin-right: 55px;
+}
+
+.gab_contain {
+	width: 350px;
+}
+
 .signup {
-	margin-right: 100px;
 	height: 380px;
 	border-bottom: 1px solid black;
 	margin-bottom: 100px;
@@ -115,10 +137,23 @@ h5 {
 	margin-bottom: 0px;
 }
 
+#nofriends {
+	margin: 0px;
+}
+
+h2 {
+	margin: 0px;
+}
+
 #child {
 	margin-bottom: 0px;
 	font-size: xx-small;
 	text-align: center;
+}
+
+.right_side_box {
+	border: 1px solid;
+	width: 200px;
 }
 
 .signup_form {
@@ -132,45 +167,69 @@ h5 {
 	margin: auto;
 	margin-left: 0px;
 	width: 173px;
+	background-color: #077C13;
+	color: white;
+	border-radius: 6px;
+	border: solid;
 }
 
-.username_signup, .username_signup_name {
+.username_signup_name {
+	padding-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.username_signup_name input {
+	width: 145px;
+	padding: 5px 0px;
+	font-size: 1em;
+}
+
+.username_signup {
 	padding-bottom: 10px;
 }
 
 .username_signup input {
 	font-size: 1em;
 	width: 300px;
+	padding: 5px 0px;
 }
-
-.username_signup_name input {
-	width: 90%;
-}
-
-
 .signup_name_box {
 	display: flex;
-
 }
 
 .signup_name_box input {
 	font-size: 1em;
 }
 
-.gab_box {
+.new_gab_box {
 	display: flex;
-
 }
-.new_gab input {
-	height: 100px;
+
+#new_gab_text {
+	height: 70px;
 	width: 300px;
 	padding-bottom: 75px;
+	overflow: hidden;
 }
 
-
-.save {
+#save {
 	margin: auto;
 	margin-left: 0px;
+	background-color: #077C13;
+	color: white;
+	border-radius: 6px;
+	border: solid;
+	width: 300px;
+}
+
+.comment_contain {
+	width: 500px;
+	margin: auto;
+}
+
+.comment_box {
+	border: solid 1px;
 }
 
 .footer_gab {

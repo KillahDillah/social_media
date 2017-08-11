@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Gabbook</title>
-  <link rel="stylesheet" href="css/main.css" />
-</head>
+	<meta charset="UTF-8">
+ <title>Gab - Gab About It</title>
+ <link rel="stylesheet" href="/css/main.css" />
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+</head>	
 <body>
-	<div class="main_contain">
-
-	  <h1>Hello, Welcome to {{appType}}!</h1>
-	  
-	  <div class="head_nav">
-	  	<div class="nav_link">
-	  	<a href=""> Gabble </a>
-	  	</div>
-	  	<div class="nav_link">
-	  		<a href=""> Create a new Gab </a>
-	  	</div>
-	  	<div class="nav_link">
-	  		<a href=""> Logged in as {{name}} </a>
-	  	</div>
-	  	<div class="nav_link_out">
-	  		<a href=""> Log Out </a>
-	  	</div>
-	  </div>
-	  <div class="comment_contain">
-	  	<form class="">
-
-	  		<input type="submit" value="submit">
-	  	</form>
-
-	  </div>
+	<div class="header">
+		<div class="login_box_gab">
+			<h1 class="gabh1">Gabble</h1>
+			<div class="head_nav">
+				<div class="nav_link">
+			 	<a href="/"> Gabble </a>
+			 	</div>
+			 	<div class="nav_link">
+			 		<a href="/gab"> Create a new Gab </a>
+			 	</div>
+			 	<div class="nav_link">
+			 		<a href="/login"> Logged in as {{username}} </a>
+			 	</div>
+			 	<div class="nav_link_out">
+			 		<a href="/"> Log Out </a>
+			 	</div>
+			</div>
+		</div>
 	</div>
+	  <div class="comment_contain">
+		
+		{{#gabs}}
+		<div class="comment_box">
+	  	{{gabtext}}
+	  	</div>
+		{{/gabs}}
+		
+	  	
+	  </div>
 </body>
 </html>
