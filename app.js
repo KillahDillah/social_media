@@ -7,6 +7,7 @@ const config = require('config')
 const hash = require('js-sha512')
 const mysql = require('mysql')
 const session = require('express-session')
+const moment = require('moment')
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -47,6 +48,7 @@ app.post("/login", function(req,res,next){
 	conn.query(sql, [username, password], function(err, results, fields){
   	if (results.length > 0) { // username and password are correct
   		req.session.username = username
+  		req.session.userid = results[0].userid
       res.redirect("/gab")
     } else {
       res.send ('Username and password do not match')  // username and password not correct 
@@ -64,7 +66,6 @@ app.post("/signup", function(req,res,next){
 	INSERT INTO users (fname, lname, username, password)
 	VALUES (?,?,?,?)
 	`
-
 	conn.query(sql,[fname,lname,username,password], function(err,results,fields){
 		if (!err){
 			res.redirect("/gab")
@@ -76,34 +77,18 @@ app.post("/signup", function(req,res,next){
 
 
 app.get("/gab", function(req,res,next){
-	res.render("gab", { username:req.session.username})
-})
-
-app.get ("/homepage", function(req,res,next){
-	const sql = `
-	SELECT *
-	FROM gabs
-	ORDER BY gabid DESC
-	LIMIT 10
-	`
-
-	conn.query (sql, function(err,results,fields){
-		var cxt = {
-			gabs:results
-		}
-		res.render ('homepage', cxt)
-	})
+	res.render("gab", {username:req.session.username, userid:req.session.userid})
 })
 
 app.post("/gab", function(req,res,next){
 	const gab = req.body.newgab
 
 	const sql = `
-		INSERT INTO gabs (gabtext)
-		VALUES (?)
+		INSERT INTO gabs (gabtext, userid)
+		VALUES (?, ?)
 	`
 
-	conn.query(sql, [gab], function(err,results,fields){
+	conn.query(sql, [gab, req.session.userid], function(err,results,fields){
 		if (!err) {
 			res.redirect("/homepage") 
 		} else {
@@ -111,6 +96,91 @@ app.post("/gab", function(req,res,next){
 		}
 	})
 })
+
+
+app.get ("/homepage", function(req,res,next){
+	const sql = `
+	SELECT 
+    g.*, u.username, COUNT(l.id) AS likes
+	FROM
+    gabs g
+		   LEFT OUTER JOIN
+	    likes l ON g.gabid = l.gabid
+	       INNER JOIN
+	    users u ON u.userid = g.userid
+	GROUP BY g.gabid
+	ORDER BY g.gabid DESC
+	LIMIT 10
+	`
+	conn.query (sql, function(err,results,fields){
+	  var cxt = {
+	    gabs:results.map (function(item){
+	      if (item.likes === 0) {
+	        return {
+	          gabid:item.gabid,
+	          gabtext: item.gabtext,
+	          timestamp: moment(item.timestamp).fromNow(),
+	          username: item.username,
+	          likes: "Nobody likes this"
+	        }
+	      } if (item.likes === 1) {
+	        return {
+	          gabid:item.gabid,
+	          gabtext: item.gabtext,
+	          timestamp: moment(item.timestamp).fromNow(),
+	          username:item.username,
+	          likes: "1 like, that's it"
+	        }
+	      } if (item.likes > 1) {
+	        return {
+	          gabid: item.gabid,
+	          gabtext:item.gabtext,
+	          timestamp: moment(item.timestamp).fromNow(),
+	          username:item.username,
+	          likes: item.likes + " likes"
+	        }
+	      }
+	    }),
+	    username:req.session.username,
+	    userid:req.session.userid
+	  }
+	  res.render ('homepage', cxt)
+	})
+})
+
+app.post("/homepage", function(req,res,next){
+	const gabid = req.body.gabid
+	const sql = `
+	INSERT INTO likes (userid, gabid)
+	VALUES (?, ?)
+	`
+	conn.query(sql, [req.session.userid, gabid], function(err, results, fields){
+		if (!err){
+			res.redirect("/homepage")
+		} else {
+			res.send ("No likey")
+		}
+	})
+})
+
+
+
+app.get ("/likes", function(req,res,next){
+	// const sql = `
+	// SELECT *
+	// FROM likes l
+	// JOIN gabs g ON l.gabid = g.gabid
+	// JOIN users u ON l.userid = u.userid
+	// ORDER BY likeid DESC
+	// `
+	// conn.query (sql, function(err,results,fields){
+	// 	var like = {
+	// 		likes:results
+	// 	}
+		res.render ('likes')
+	// })
+})
+
 
 app.listen(3000, function(){
   console.log("App running on port 3000")

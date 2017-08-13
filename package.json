@@ -13,6 +13,7 @@
     "express": "^4.15.3",
     "express-session": "^1.15.5",
     "js-sha512": "^0.4.0",
+    "moment": "^2.18.1",
     "mustache-express": "^1.2.5",
     "mysql": "^2.14.1"
   },
