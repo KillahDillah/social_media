@@ -49,7 +49,7 @@ app.post("/login", function(req,res,next){
   	if (results.length > 0) { // username and password are correct
   		req.session.username = username
   		req.session.userid = results[0].userid
-      res.redirect("/" + username + "/gab")
+      res.redirect("/" + username + "/homepage")
     } else {
       res.send ('Username and password do not match')  // username and password not correct 
       }
@@ -86,7 +86,7 @@ app.get("/:username/gab", function(req,res,next){
 	res.render("gab", {username:req.session.username, userid:req.session.userid})
 })
 
-app.post("/gab", function(req,res,next){
+app.post("/:username/gab", function(req,res,next){
 	const gab = req.body.newgab
 
 	const sql = `
@@ -96,7 +96,7 @@ app.post("/gab", function(req,res,next){
 
 	conn.query(sql, [gab, req.session.userid], function(err,results,fields){
 		if (!err) {
-			res.redirect("/homepage") 
+			res.redirect("/:username/homepage") 
 		} else {
 			res.send ("Danger!")
 		}
@@ -104,7 +104,7 @@ app.post("/gab", function(req,res,next){
 })
 
 
-app.get ("/homepage", function(req,res,next){
+app.get ("/:username/homepage", function(req,res,next){
 	const sql = `
 	SELECT 
     g.*, u.fname, COUNT(l.id) AS likes
@@ -154,7 +154,7 @@ app.get ("/homepage", function(req,res,next){
 	})
 })
 
-app.post("/homepage", function(req,res,next){
+app.post("/:username/homepage", function(req,res,next){
 	const gabid = req.body.gabid
 	const sql = `
 	INSERT INTO likes (userid, gabid)
@@ -162,7 +162,7 @@ app.post("/homepage", function(req,res,next){
 	`
 	conn.query(sql, [req.session.userid, gabid], function(err, results, fields){
 		if (!err){
-			res.redirect("/homepage")
+			res.redirect("/:username/homepage")
 		} else {
 			res.send ("No likey")
 		}
@@ -172,7 +172,7 @@ app.post("/homepage", function(req,res,next){
 
 
 app.get ("/:gabid/likes", function(req,res,next){
-
+	
 	const sql = `
 	SELECT l.*, u.fname
 	FROM likes l
@@ -197,7 +197,8 @@ app.get ("/:gabid/likes", function(req,res,next){
 
 			var like = {
 				likes:results,
-				gab:gab
+				gab:gab,
+				username: req.session.username
 			}
 			res.render ('likes', like)
 		})

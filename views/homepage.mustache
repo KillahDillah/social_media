@@ -9,11 +9,11 @@
 <body>
 	<div class="header">
 		<div class="login_box_gab">
-			<div class="gabh1"><a href="/"> Gabble </a></div>
+			<div class="gabh1"><a href="/{{username}}/homepage"> Gabble </a></div>
 			<div class="head_nav">
 				
 			 	<div class="nav_link">
-			 		<a href="/gab"> Create a new Gab </a>
+			 		<a href="/{{username}}/gab"> Create a new Gab </a>
 			 	</div>
 			 	<div class="nav_link">
 			 		<a href="/homepage"> Logged in as {{username}} </a>
@@ -40,7 +40,7 @@
 					<label class="gab_username">{{fname}}:</label> {{gabtext}}
 				<div class="timestamp_box">
 					{{timestamp}}
-	  		<form action="/homepage" method="post" class="like_form">
+	  		<form action="/{{username}}/homepage" method="post" class="like_form">
 	  			<input type="hidden" name="gabid" value="{{gabid}}">
 	  			<input type="submit" name="like" value="Like" class="like_button">
 	  	</div>
