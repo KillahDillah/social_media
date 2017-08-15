@@ -32,14 +32,12 @@
 			<h4>Pages</h4>
 			<h4>What she said about him who said something about her</h4>
 		</div>
-
+		{{gab.fname}}:{{gab.gabtext}}
+		{{gab.time}}
 		<div class="comment_contain">
 			{{#likes}}
 		<div class="comment_box">
-	  		{{username}}
-	  		<form action="/homepage" method="post" class="like_form">
-	  			<input type="submit" name="like" value="Like" class="like_button">
-	  		</form>
+	  		{{fname}}
 	  	</div>
 			{{/likes}}
 	</div>

@@ -9,12 +9,8 @@
 <body>
 	<div class="header">
 		<div class="login_box_gab">
-			<div class="gabh1"><a href="/"> Gabble </a></div>
+			<div class="gabh1"><a href="/homepage"> Gabble </a></div>
 			<div class="head_nav">
-				
-			 	<div class="nav_link">
-			 		<a href="/gab"> Create a new Gab </a>
-			 	</div>
 			 	<div class="nav_link">
 			 		<a href="/homepage"> Logged in as {{username}} </a>
 			 	</div>
@@ -26,7 +22,7 @@
 	</div>
 	<div class="main_contain_gab">
 		<div class="left_side_box">
-				<h2>Groups</h2><br>
+			<h2>Groups</h2><br>
 			<h4>This group is secret, no new friends!</h4>
 			<h4>Party Committee</h4>
 			<h4>High School Reunion</h4>
@@ -34,35 +30,22 @@
 			<h4>What she said about him who said something about her</h4>
 		</div>
 
-		<div class="comment_contain">
-				{{#gabs}}
-			<a href="/{{gabid}}/likes"> <div class="comment_box">
-					<label class="gab_username">{{fname}}:</label> {{gabtext}}
-				<div class="timestamp_box">
-					{{timestamp}}
-	  		<form action="/homepage" method="post" class="like_form">
-	  			<input type="hidden" name="gabid" value="{{gabid}}">
-	  			<input type="submit" name="like" value="Like" class="like_button">
-	  	</div>
-				<div class="likes">
-					{{likes}}
-				</div>
-	  		</form>
-	  	</div>
-			{{/gabs}}
-	</div></a>
+		<div class="gab_contain">
+			<h3>Create new Gab</h3>
+		
+			<div class="new_gab_box">
+				<form action="/gab" method="post">
+					<textarea name="newgab" placeholder="Tell me more..." id="new_gab_text" wrap="hard" maxlength="140" ></textarea>
+					<input type="submit" id="save" value="Save Gab">
+				</form>
+			</div>
+		</div>
 		<div class="right_side_box">
-			<div class="news">
 			<h2>News and shit</h2>
-			</div>
-			<div class="new_friends">
-				<h4>People you might know?</h4>
-			</div>
 		</div>
 	</div>
 	<div class="footer_gab">
 		<h5_gab> - Languages - Languages - More Languages - Vas ist das? - Como Esta? - Legal jargon - HALP! - </h5>
 	</div>
-	
 </body>
 </html>

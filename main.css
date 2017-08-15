@@ -1,13 +1,6 @@
 html {box-sizing:border-box;}
 *, *:before, *:after {box-sizing:inherit;}
 
-textarea, input {
-	outline:0;
-}
-
-a {
-	text-decoration-line: none; 
-}
 
 body {
   margin:0;
@@ -256,13 +249,6 @@ h2 {
 	border: solid 1px;
 	margin-bottom: 10px;
 	padding: 5px;
-	text-decoration-line: none;
-	color: black;
-}
-
-.gab_username {
-	color: #077C13;
-	font-weight: bold;
 }
 
 .timestamp_box {
@@ -281,3 +267,6 @@ h2 {
 	text-align: center;
 }
 
+textarea {
+	outline:0;
+}

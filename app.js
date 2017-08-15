@@ -49,7 +49,7 @@ app.post("/login", function(req,res,next){
   	if (results.length > 0) { // username and password are correct
   		req.session.username = username
   		req.session.userid = results[0].userid
-      res.redirect("/gab")
+      res.redirect("/" + username + "/gab")
     } else {
       res.send ('Username and password do not match')  // username and password not correct 
       }
@@ -67,16 +67,22 @@ app.post("/signup", function(req,res,next){
 	VALUES (?,?,?,?)
 	`
 	conn.query(sql,[fname,lname,username,password], function(err,results,fields){
-		if (!err){
-			res.redirect("/gab")
+		if (!err) {
+			req.session.username = username
+  		req.session.userid = results.insertId
+			res.redirect("/" + username + "/gab")
 		} else {
 			res.send ("Username already taken")
 		}
 	})
 })
 
+app.get ('/logout', function(req,res,next){
+	req.session.destroy()
+	res.redirect("/")
+})
 
-app.get("/gab", function(req,res,next){
+app.get("/:username/gab", function(req,res,next){
 	res.render("gab", {username:req.session.username, userid:req.session.userid})
 })
 
@@ -101,7 +107,7 @@ app.post("/gab", function(req,res,next){
 app.get ("/homepage", function(req,res,next){
 	const sql = `
 	SELECT 
-    g.*, u.username, COUNT(l.id) AS likes
+    g.*, u.fname, COUNT(l.id) AS likes
 	FROM
     gabs g
 		   LEFT OUTER JOIN
@@ -120,7 +126,7 @@ app.get ("/homepage", function(req,res,next){
 	          gabid:item.gabid,
 	          gabtext: item.gabtext,
 	          timestamp: moment(item.timestamp).fromNow(),
-	          username: item.username,
+	          fname:item.fname,
 	          likes: "Nobody likes this"
 	        }
 	      } if (item.likes === 1) {
@@ -128,7 +134,7 @@ app.get ("/homepage", function(req,res,next){
 	          gabid:item.gabid,
 	          gabtext: item.gabtext,
 	          timestamp: moment(item.timestamp).fromNow(),
-	          username:item.username,
+	          fname:item.fname,
 	          likes: "1 like, that's it"
 	        }
 	      } if (item.likes > 1) {
@@ -136,7 +142,7 @@ app.get ("/homepage", function(req,res,next){
 	          gabid: item.gabid,
 	          gabtext:item.gabtext,
 	          timestamp: moment(item.timestamp).fromNow(),
-	          username:item.username,
+	          fname:item.fname,
 	          likes: item.likes + " likes"
 	        }
 	      }
@@ -165,20 +171,37 @@ app.post("/homepage", function(req,res,next){
 
 
 
-app.get ("/likes", function(req,res,next){
-	// const sql = `
-	// SELECT *
-	// FROM likes l
-	// JOIN gabs g ON l.gabid = g.gabid
-	// JOIN users u ON l.userid = u.userid
-	// ORDER BY likeid DESC
-	// `
-	// conn.query (sql, function(err,results,fields){
-	// 	var like = {
-	// 		likes:results
-	// 	}
-		res.render ('likes')
-	// })
+app.get ("/:gabid/likes", function(req,res,next){
+
+	const sql = `
+	SELECT l.*, u.fname
+	FROM likes l
+	JOIN gabs g ON l.gabid = g.gabid
+	JOIN users u ON l.userid = u.userid
+	WHERE g.gabid = ?
+    ORDER BY l.id DESC;
+	`
+	conn.query (sql, [req.params.gabid], function(err,results,fields){
+		const gabSQL = `
+			SELECT 
+			    g.*, u.fname
+			FROM
+			    gabs g
+			JOIN
+			    users u ON u.userid = g.userid
+			WHERE g.gabid = ?
+		`
+		conn.query(gabSQL,[req.params.gabid], function(err2,results2,fields2){
+			var gab = results2[0]
+			gab.time = moment(gab.timestamp).format('MMMM Do YYYY, h:mm:ss a')
+
+			var like = {
+				likes:results,
+				gab:gab
+			}
+			res.render ('likes', like)
+		})
+	})
 })
 
 
