@@ -51,8 +51,8 @@ app.post("/login", function(req,res,next){
   		req.session.userid = results[0].userid
       res.redirect("/" + username + "/homepage")
     } else {
-      res.send ('Username and password do not match')  // username and password not correct 
-      }
+      next("Your shit don't match!")
+    }
    })
 })
 
@@ -61,18 +61,19 @@ app.post("/signup", function(req,res,next){
 	const lname = req.body.lastname
 	const username = req.body.desired_username
 	const password = hash(req.body.password)
+	const side = req.body.side
 
 	const sql = `
-	INSERT INTO users (fname, lname, username, password)
-	VALUES (?,?,?,?)
+	INSERT INTO users (fname, lname, username, password, side)
+	VALUES (?,?,?,?,?)
 	`
-	conn.query(sql,[fname,lname,username,password], function(err,results,fields){
+	conn.query(sql,[fname,lname,username,password,side], function(err,results,fields){
 		if (!err) {
 			req.session.username = username
   		req.session.userid = results.insertId
 			res.redirect("/" + username + "/gab")
 		} else {
-			res.send ("Username already taken")
+			next("Username already taken")
 		}
 	})
 })
@@ -98,7 +99,7 @@ app.post("/:username/gab", function(req,res,next){
 		if (!err) {
 			res.redirect("/:username/homepage") 
 		} else {
-			res.send ("Danger!")
+			next("Oops. Our fault.")
 		}
 	})
 })
@@ -120,7 +121,7 @@ app.get ("/:username/homepage", function(req,res,next){
 	`
 	conn.query (sql, function(err,results,fields){
 	  var cxt = {
-	    gabs:results.map (function(item){
+	    gabs:results.map(function(item){
 	      if (item.likes === 0) {
 	        return {
 	          gabid:item.gabid,
@@ -164,11 +165,10 @@ app.post("/:username/homepage", function(req,res,next){
 		if (!err){
 			res.redirect("/:username/homepage")
 		} else {
-			res.send ("No likey")
+			next("Oops. Our fault.")
 		}
 	})
 })
-
 
 
 app.get ("/:gabid/likes", function(req,res,next){
@@ -204,7 +204,16 @@ app.get ("/:gabid/likes", function(req,res,next){
 		})
 	})
 })
+app.get("/homepage", function(req,res,next){
+	let path = "/" + req.session.username + "/homepage"
+	res.redirect(path)
+})
 
+app.use(function(err, req, res, next){
+	res.render("error", {
+		message: err
+	})
+})
 
 app.listen(3000, function(){
   console.log("App running on port 3000")

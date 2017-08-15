@@ -5,11 +5,13 @@
  <title>Gab - Gab About It</title>
  <link rel="stylesheet" href="/css/main.css" />
  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+ <script src="https://use.fontawesome.com/8ca07b3466.js"></script>
 </head>	
 <body>
 	<div class="header">
 		<div class="login_box_gab">
-			<div class="gabh1"><a href="/{{username}}/homepage"> Gabble </a></div>
+
+			<div class="gabh1"><a href="/homepage"> Gabble </a></div>
 			<div class="head_nav">
 				
 			 	<div class="nav_link">
@@ -24,46 +26,57 @@
 			</div>
 		</div>
 	</div>
-	<div class="main_contain_gab">
-		<div class="left_side_box">
-				<h2>Groups</h2><br>
-			<h4>This group is secret, no new friends!</h4>
-			<h4>Party Committee</h4>
-			<h4>High School Reunion</h4>
-			<h4>Pages</h4>
-			<h4>What she said about him who said something about her</h4>
-		</div>
-
-		<div class="comment_contain">
-				{{#gabs}}
-			<a href="/{{gabid}}/likes"> 
-			<div class="comment_box">
-					<label class="gab_username">{{fname}}:</label> 
-					<b class="bold">{{gabtext}}</b>
-				<div class="timestamp_box">
-					{{timestamp}}
-	  		<form action="/{{username}}/homepage" method="post" class="like_form">
-	  			<input type="hidden" name="gabid" value="{{gabid}}">
-	  			<input type="submit" name="like" value="Like" class="like_button">
-	  	</div>
-				<div class="likes">
-					{{likes}}
-				</div>
-	  		</form>
-	  	</div>
-			{{/gabs}}
-	</div></a>
-		<div class="right_side_box">
-			<div class="news">
-			<h2>News and shit</h2>
+	<div class="main_contain">
+		<div class="main_contain_gab">
+			<div class="left_side_box">
+					<h2>Groups</h2><br>
+				<h4>This group is secret, no new friends!</h4>
+				<h4>Party Committee</h4>
+				<h4>High School Reunion</h4>
+				<h4>Pages</h4>
+				<h4>What she said about him who said something about her</h4>
 			</div>
-			<div class="new_friends">
-				<h4>People you might know?</h4>
+
+			<div class="comment_contain">
+					{{#gabs}}
+				<a href="/{{gabid}}/likes"> 
+				<div class="comment_box">
+						<label class="gab_username">{{fname}}:</label> 
+						<b class="bold">{{gabtext}}</b>
+					<div class="timestamp_box">
+						{{timestamp}}
+		  		<form action="/{{username}}/homepage" method="post" class="like_form">
+		  			<input type="hidden" name="gabid" value="{{gabid}}">
+		  			<button type="submit" class="like_button"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+		  	</div>
+					<div class="likes">
+						{{likes}}
+					</div>
+		  		</form>
+		  	</div>
+				{{/gabs}}
+		</div></a>
+			<div class="right_side_box">
+				<div class="news">
+				<h2>News and shit</h2>
+				</div>
+				<div class="new_friends">
+					<h4>People you might know?</h4>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="footer_gab">
-		<h5_gab> - Languages - Languages - More Languages - Vas ist das? - Como Esta? - Legal jargon - HALP! - </h5>
+		<ul>
+			<li>Languages</li> -
+			<li>Languages</li> -
+			<li>More Languages</li> -
+			<li>Vas ist das?</li> -
+			<li>&#191;C&#243;mo Est&#225;s?</li> -
+			<li>Legal jargon</li> -
+			<li>HALP!</li> -
+			<li><i class="fa fa-hand-spock-o" aria-hidden="true"></i></li>
+		</ul>
 	</div>
 	
 </body>

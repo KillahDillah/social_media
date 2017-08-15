@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
- <title>Gab - Log In</title>
- <link rel="stylesheet" href="/css/main.css" />
- <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+	<title>Gab - Log In</title>
+	<link rel="stylesheet" href="/css/main.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+	<script src="https://use.fontawesome.com/8ca07b3466.js"></script>
 </head>
 <body>
 	<div class="header">
-		<div class="login_box">
-			<h1>Gabble</h1>
+		<div class="login_box"> 
+		    <div class="logo">                     
+				<h1> Gabble</h1>
+			</div>
 			<form action="/login" method="post" class="login_form">
 				<div class="login">
+					<i class="fa fa-user-o" aria-hidden="true"></i>
 					<label class="login_font">Username</label><br>
 					<input type="text" name="username" class="login_text">
 				</div>
@@ -24,52 +28,67 @@
 			</form>
 		</div>
 	</div>
-	<div class="main_contain_gab">
-		<div class="left_side_box">
-			<div id="left_side_head">
-				<h1 id="left_head_text">Bro, do you even Gabble?</h1>
+	<div class="main_contain">
+		<div class="main_contain_gab">
+			<div class="left_side_box">
+				<div id="left_side_head">
+					<h1 id="left_head_text"><b>Bro, do you even Gabble?</h1></b>
+				</div>
+				<div class="inner_left">
+					<h2>Who cares what you think?</h2>
+					<h5 id="nofriends">We don't, but your friends might!</h5>
+					<br>
+					<h3>Gab about uselessness!</h3> 
+					<br>
+					<h3>What about Becky's butt?</h3>
+					<br>
+					<h3>Waste away your time checking on what everyone else is doing!</h3>
+				</div>
 			</div>
-			<div class="inner_left">
-				<h2>Who cares what you think?</h2>
-				<h5 id="nofriends">We don't, but maybe your friends might!</h5>
-				<br>
-				<h3>Gab about uselessness and Becky's butt</h3>
-				<br>
-				<h3>Waste away your time checking on what everyone else is doing!</h3>
+			<div class="signup">
+				<h1 id="signup_title"> Sign Up</h1>
+				<h3>Sign up now! It's the cool thing.</h3>
+				<div class="signup_form">
+					<form action="/signup" method="post">
+						<div class="username_signup_name">
+							<input type="text" name="firstname" placeholder="First Name">
+							<input type="text" name="lastname" placeholder="Last Name">
+						</div>
+						<div class="username_signup">
+							<input type="text" name="desired_username" placeholder="Desired Username">
+						</div>
+						<div class="username_signup">
+							<input type="password" name="password" placeholder="New Password">
+						</div>
+						<div class="username_signup">
+						<input type="password" name="confirm"
+						placeholder="Confirm Password">
+						</div>
+						<div class="m_f">
+						<input type="radio" name="side" value="dark"><i class="fa fa-empire" aria-hidden="true"></i> Empire
+						<input type="radio" name="side" value="rebel" id="rebel" ><i class="fa fa-rebel" aria-hidden="true"></i> Rebellion
+						</div>
+						<h5 id="child"> By clicking Create Account, you agree to hand over your first born child. </h5>
+						<div class="create_account_box">
+						<button type="submit" class="create_account"><i class="fa fa-user-plus" aria-hidden="true"></i>
+							Create Account</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-		<div class="signup">
-			<h1 id="signup_title"> Sign Up</h1>
-			<h3>Sign up now!</h3> 
-			<h3>It's the cool thing.</h3>
-			<div class="signup_form">
-				<form action="/signup" method="post">
-					<div class="username_signup_name">
-						<input type="text" name="firstname" placeholder="First Name">
-						<input type="text" name="lastname" placeholder="Last Name">
-					</div>
-					<div class="username_signup">
-						<input type="text" name="desired_username" placeholder="Desired Username">
-					</div>
-					<div class="username_signup">
-						<input type="password" name="password" placeholder="New Password">
-					</div>
-					<div class="username_signup">
-					<input type="password" name="confirm"
-					placeholder="Confirm Password">
-					</div>
-					<h5 id="child"> By clicking Create Account, you agree to hand over your first born child. </h5>
-					<div class="create_account_box">
-					<input type="submit" value="Create Account" class="create_account">
-					</div>
-				</form>
-			</div>
-			
-		</div>
-		
 	</div>
 	<div class="footer_gab">
-		<h5_gab> - Languages - Languages - More Languages - Vas ist das? - Como Esta? - Legal jargon - HALP! - </h5>
+		<ul>
+			<li>Languages</li> -
+			<li>Languages</li> -
+			<li>More Languages</li> -
+			<li>Vas ist das?</li> -
+			<li>&#191;C&#243;mo Est&#225;s?</li> -
+			<li>Legal jargon</li> -
+			<li>HALP!</li> -
+			<li><i class="fa fa-hand-spock-o" aria-hidden="true"></i></li>
+		</ul>
 	</div>
 </body>
 </html>
