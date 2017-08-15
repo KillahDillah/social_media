@@ -36,8 +36,10 @@
 
 		<div class="comment_contain">
 				{{#gabs}}
-			<a href="/{{gabid}}/likes"> <div class="comment_box">
-					<label class="gab_username">{{fname}}:</label> {{gabtext}}
+			<a href="/{{gabid}}/likes"> 
+			<div class="comment_box">
+					<label class="gab_username">{{fname}}:</label> 
+					<b class="bold">{{gabtext}}</b>
 				<div class="timestamp_box">
 					{{timestamp}}
 	  		<form action="/{{username}}/homepage" method="post" class="like_form">

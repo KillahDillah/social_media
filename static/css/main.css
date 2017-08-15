@@ -253,21 +253,54 @@ h2 {
 }
 
 .comment_box {
-	border: solid 1px;
 	margin-bottom: 10px;
 	padding: 5px;
 	text-decoration-line: none;
 	color: black;
+	border:1px solid;
 }
 
-.gab_username {
+.comment_box_like {
+	margin-bottom: 10px;
+	padding: 5px;
+	text-decoration-line: none;
+	color: black;
+	margin: 35px;
+	border: 1px solid;
+}
+
+.comment_box_like li {
+	list-style-type: none;
+	text-indent: 10px;
 	color: #077C13;
 	font-weight: bold;
+}
+
+.like_box {
+	margin-top: 10px;
+}
+
+.like_fname {
+	font-size: larger;
+}
+.gab_username, .like_fname {
+	color: #077C13;
+	font-weight: bold;
+	font-size: larger;
+}
+
+.bold {
+	font-size: large;
 }
 
 .timestamp_box {
 	display: flex;
 	justify-content: space-between;
+	text-indent: 10px;
+}
+
+.likes {
+	text-indent: 10px;
 }
 
 .like_form {

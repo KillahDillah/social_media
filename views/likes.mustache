@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
  <title>Gab - Likes</title>
- <link rel="stylesheet" href="/css/main.css" />
+ <link rel="stylesheet" href="/css/main.css"/>
  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 </head>	
 <body>
@@ -32,15 +32,20 @@
 			<h4>Pages</h4>
 			<h4>What she said about him who said something about her</h4>
 		</div>
-		{{gab.fname}}:{{gab.gabtext}}
-		{{gab.time}}
 		<div class="comment_contain">
-			{{#likes}}
-		<div class="comment_box">
-	  		{{fname}}
-	  	</div>
-			{{/likes}}
-	</div>
+			<div class="comment_box_like">
+				<label class="like_fname">{{gab.fname}}:</label> {{gab.gabtext}}
+				<div class="timestamp_box">
+					<i>{{gab.time}}</i>
+				</div>
+				<div class="like_box">
+				<h3>Liked By:</h3>
+					{{#likes}}
+					<li>{{fname}}</li>
+			  		{{/likes}}
+	  			</div>
+	  		</div>
+		</div>
 		<div class="right_side_box">
 			<div class="news">
 			<h2>News and shit</h2>
